@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 
 
 def run_training() -> None:
-    """Train the model."""
+    """Train the model.."""
 
     # read training data
     data = load_dataset(file_name=config.app_config.training_data_file)
