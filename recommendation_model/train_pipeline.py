@@ -12,11 +12,11 @@ def run_training() -> None:
 
     # divide train and test
     X_train, X_test = train_test_split(
-        data[config.model_config.movies_metadata_features],  # predictors
-        test_size=config.model_config.test_size,
+        data[config.model_configuration.movies_metadata_features],  # predictors
+        test_size=config.model_configuration.test_size,
         # we are setting the random seed here
         # for reproducibility
-        random_state=config.model_config.random_state,
+        random_state=config.model_configuration.random_state,
     )
    
 

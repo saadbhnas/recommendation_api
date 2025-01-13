@@ -34,43 +34,43 @@ recommendation_pipe = Pipeline([
     (
      "extracting useful information from columns",
      Extract_value(
-         variable=config.model_config.vars_extract_name,
+         variable=config.model_configuration.vars_extract_name,
          key='name')
      ),
     (
      "drop useless columns",
-     DropFeatures(features_to_drop=config.model_config.variables_drop)
+     DropFeatures(features_to_drop=config.model_configuration.variables_drop)
      ),
     (
      "replacing string inside float type overview",
      Replacing(
-         variables=[config.model_config.variables_to_replace[0]],
-         to_replace=config.model_config.overview_replace,
+         variables=[config.model_configuration.variables_to_replace[0]],
+         to_replace=config.model_configuration.overview_replace,
          value='missing')
      ),
     (
      "replacing string inside float type budget",
      Replacing(
-         variables=[config.model_config.variables_to_replace[2]],
-         to_replace=config.model_config.strings_to_replace_budget,
+         variables=[config.model_configuration.variables_to_replace[2]],
+         to_replace=config.model_configuration.strings_to_replace_budget,
          value=np.nan)
      ),
     (
      "replacing string inside float type popularity",
      Replacing(
-         variables=[config.model_config.variables_to_replace[1]],
-         to_replace=config.model_config.popularity_replace,
+         variables=[config.model_configuration.variables_to_replace[1]],
+         to_replace=config.model_configuration.popularity_replace,
          value=np.nan)
      ),
     (
      "changing type of some columns",
      Changing_type(
-         variables=config.model_config.changing_vars_type,
+         variables=config.model_configuration.changing_vars_type,
          target_type=float)
      ),
     (
      "training model",
-     CreatingContent(variables=config.model_config.creating_content_column)
+     CreatingContent(variables=config.model_configuration.creating_content_column)
      )
     
     ])

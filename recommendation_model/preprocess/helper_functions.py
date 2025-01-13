@@ -119,7 +119,7 @@ would be something like producer , writer and so on
 
 """
 
-EV = Extract_value(config.model_config.vars_extract_name,key='name')
+EV = Extract_value(config.model_configuration.vars_extract_name,key='name')
 df_extracted_name = EV.fit_transform(new_df)
 
 
