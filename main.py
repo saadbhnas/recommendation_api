@@ -4,6 +4,15 @@ from fastapi import FastAPI, HTTPException
 #from recommendation_model.predict import make_prediction
 from pydantic import BaseModel
 from fastapi.params import Body
+import joblib
+from recommendation_model.config.core import  trained_model_dir
+from recommendation_model.config.core import  dataset_folder,config
+import pandas as pd
+
+
+save_path = trained_model_dir / config.app_config.similiarity_score
+similiarity_score = joblib.load(filename=save_path)
+df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
 
 class Title(BaseModel):
     movie_title:str
@@ -19,15 +28,7 @@ async def read_root():
 
 
 
-import joblib
-from recommendation_model.config.core import  trained_model_dir
-from recommendation_model.config.core import  dataset_folder,config
-import pandas as pd
 
-
-save_path = trained_model_dir / config.app_config.similiarity_score
-similiarity_score = joblib.load(filename=save_path)
-df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
 '''
 
 @app.post("/title")
