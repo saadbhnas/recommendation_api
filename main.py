@@ -32,7 +32,7 @@ df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
 @app.post("/title")
 async def title(payload:dict=Body(...)):
     
-    title_to_index = pd.Series(df.index , index=['title']).to_dict()
+    title_to_index = pd.Series(df.index , index=df['title']).to_dict()
     
     movie_title = payload['movie_title']
     
