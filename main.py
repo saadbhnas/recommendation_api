@@ -12,7 +12,7 @@ import pandas as pd
 
 save_path = trained_model_dir / config.app_config.similiarity_score
 similiarity_score = joblib.load(filename=save_path)
-df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
+#df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
 
 class Title(BaseModel):
     movie_title:str
@@ -58,6 +58,7 @@ async def title(payload:dict=Body(...)):
 @app.post("/title")
 async def title(payload: dict = Body(...)):
     try:
+        df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
         # Ensure required columns exist
         required_columns = ['original_title', 'title']
         for col in required_columns:
