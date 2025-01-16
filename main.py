@@ -59,12 +59,12 @@ async def title(payload:dict=Body(...)):
 async def title(payload: dict = Body(...)):
     try:
         df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
-        print(df.columns)
         # Ensure required columns exist
         required_columns = ['original_title', 'title']
         for col in required_columns:
             if col not in df.columns:
-                raise HTTPException(status_code=500, detail=f"Column '{col}' is missing in the DataFrame!")
+                #raise HTTPException(status_code=500, detail=f"Column '{col}' is missing in the DataFrame!")
+                raise HTTPException(status_code=500, detail=df.colums)
 
         # Create a title-to-index mapping
         title_to_index = pd.Series(df.index, index=df['title']).to_dict()
