@@ -59,6 +59,7 @@ async def title(payload:dict=Body(...)):
 async def title(payload: dict = Body(...)):
     try:
         df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
+        print(df.columns)
         # Ensure required columns exist
         required_columns = ['original_title', 'title']
         for col in required_columns:
