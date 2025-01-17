@@ -16,6 +16,9 @@ similiarity_score = joblib.load(filename=save_path)
 
 class Title(BaseModel):
     movie_title:str
+    
+df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
+print(df.columns)    
 
 app = FastAPI()
 
