@@ -3,7 +3,7 @@ hypercorn==0.14.4
 
 
 numpy
-#pandas
+pandas
 scikit-learn
 joblib
 pydantic
@@ -14,7 +14,7 @@ feature-engine
 
 
 #numpy>=1.18.1,<1.19.0
-pandas>=0.25.3,<0.26.0
+#pandas>=0.25.3,<0.26.0
 #scikit-learn>=0.22.1,<0.23.0
 #joblib>=0.14.1,<0.15.0
 #pydantic>=1.8.1,<1.9.0
