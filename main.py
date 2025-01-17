@@ -67,7 +67,7 @@ async def title(payload: dict = Body(...)):
         for col in required_columns:
             if col not in df.columns:
                 #raise HTTPException(status_code=500, detail=f"Column '{col}' is missing in the DataFrame!")
-                raise HTTPException(status_code=500, detail=df.colums)
+                raise HTTPException(status_code=500, detail=f"Missing column '{col}'. Current columns: {list(df.columns)}")
 
         # Create a title-to-index mapping
         title_to_index = pd.Series(df.index, index=df['title']).to_dict()
