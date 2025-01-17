@@ -58,6 +58,13 @@ async def title(payload:dict=Body(...)):
 
 '''
 
+
+@app.get("/")
+def dataframee():
+    print(df.columns)
+
+
+
 @app.post("/title")
 async def title(payload: dict = Body(...)):
     try:
