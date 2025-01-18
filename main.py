@@ -68,7 +68,7 @@ def dataframee():
 @app.post("/title")
 async def title(payload: dict = Body(...)):
     try:
-        df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
+        #df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
         # Ensure required columns exist
         required_columns = ['original_title', 'title']
         for col in required_columns:
