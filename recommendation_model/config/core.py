@@ -20,7 +20,7 @@ root = Package_root.parent
 CONFIG_FILE_PATH = Package_root/'config.yml'
 trained_model_dir = Package_root/'training_dir'
 
-print(Package_root)
+print(dataset_folder)
 
 
 class AppConfig(BaseModel):
