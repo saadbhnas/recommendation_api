@@ -22,7 +22,7 @@ app = FastAPI()
 
 
 
-@app.get("/")
+@app.get("/download")
 def dataframee():
     url = 'https://raw.githubusercontent.com/saadbhnas/api-deployment/master/recommendation_model/dataset/movies_metadata.csv'
     output_file = "recommendation_model/dataset/movies_metadata.csv"  # Path inside Railway
@@ -40,7 +40,7 @@ def dataframee():
 # Replace with your file's raw URL or GitHub API download URL
 
 @app.post("/title")
-async def title(payload: dict = Body(...)):
+async def title_T(payload: dict = Body(...)):
     print("Payload received:", payload)
 
 
