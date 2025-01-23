@@ -20,7 +20,9 @@ class Title(BaseModel):
 
 app = FastAPI()
 
-
+@app.post("/title")
+async def title_T(payload: dict = Body(...)):
+    print("Payload received:", payload)
 
 @app.get("/download")
 def dataframee():
@@ -39,9 +41,7 @@ def dataframee():
 
 # Replace with your file's raw URL or GitHub API download URL
 
-@app.post("/title")
-async def title_T(payload: dict = Body(...)):
-    print("Payload received:", payload)
+
 
 
 
