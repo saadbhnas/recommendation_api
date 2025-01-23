@@ -43,7 +43,7 @@ def dataframee():
 
 
 @app.post("/title")
-async def title(payload: dict = Body(...)):
+async def title_t(payload: dict = Body(...)):
     try:
         df = pd.read_csv(r'recommendation_model/dataset/movies_metadata.csv' , low_memory=False)
         # Ensure required columns exist
