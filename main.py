@@ -24,7 +24,7 @@ app = FastAPI()
 async def title_T(payload: dict = Body(...)):
     print("Payload received:", payload)
 
-@app.get("/download")
+@app.get("//download")
 def dataframee():
     url = 'https://raw.githubusercontent.com/saadbhnas/api-deployment/master/recommendation_model/dataset/movies_metadata.csv'
     output_file = "recommendation_model/dataset/movies_metadata.csv"  # Path inside Railway
