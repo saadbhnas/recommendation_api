@@ -6,9 +6,9 @@ from pydantic import BaseModel
 from fastapi.params import Body
 import joblib
 from recommendation_model.config.core import  trained_model_dir
-from recommendation_model.config.core import  dataset_folder,config
+from recommendation_model.config.core import  config
 import pandas as pd
-
+import requests
 
 save_path = trained_model_dir / config.app_config.similiarity_score
 similiarity_score = joblib.load(filename=save_path)
@@ -18,50 +18,29 @@ class Title(BaseModel):
     movie_title:str
     
 df = pd.read_csv(r'recommendation_model/dataset/movies_metadata.csv' , low_memory=False)
-print(df.columns)    
+
 
 app = FastAPI()
 
-"""
-@app.get("/")
-async def read_root():
-    return {"Hello": "World"}
-"""
-
-
-
-
-
-'''
-
-@app.post("/title")
-async def title(payload:dict=Body(...)):
-    
-    title_to_index = pd.Series(df.index , index=df['original_title']).to_dict()
-    
-    movie_title = payload['movie_title']
-    
-    idx = title_to_index[movie_title]
-    
-    similar_movies = list(enumerate(similiarity_score[idx]))
-    
-    sorted_similar_movies = sorted(similar_movies,key = lambda x:x[1] , reverse=True)
-    
-    sim_scosorted_similar_moviesres = sorted_similar_movies[1:6]
-    
-    movie_indices = [i[0] for i in sim_scosorted_similar_moviesres]
-    
-    similar_titles = df['title'].iloc[movie_indices]
-    
-    
-    return {"data" : similar_titles}
-
-'''
 
 
 @app.get("/")
 def dataframee():
-    print(df.columns)
+    url = 'https://raw.githubusercontent.com/saadbhnas/api-deployment/master/recommendation_model/dataset/movies_metadata.csv'
+    output_file = "recommendation_model/dataset/movies_metadata.csv"  # Path inside Railway
+    try:
+        response = requests.get(url, stream=True)
+        response.raise_for_status()
+        with open(output_file, "wb") as file:
+            for chunk in response.iter_content(chunk_size=8192):
+                file.write(chunk)
+        print("CSV file downloaded successfully!")
+    except requests.exceptions.RequestException as e:
+        print(f"Error downloading CSV file: {e}")
+    
+
+# Replace with your file's raw URL or GitHub API download URL
+
 
 
 
@@ -107,13 +86,3 @@ async def title(payload: dict = Body(...)):
     except Exception as e:
         # Return a 500 error for unexpected issues
         raise HTTPException(status_code=500, detail=str(e))
-"""
-@app.get("/predict")
-def predict():
-    
-    predictions = make_prediction()
-    
-    return {"similar_movies" : predictions}
-"""
-
-#hh
