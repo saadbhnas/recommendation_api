@@ -44,9 +44,8 @@ def dataframee():
 
 @app.post("/title")
 async def title(payload: dict = Body(...)):
-    df = pd.read_csv("recommendation_model/dataset/movies_metadata.csv", low_memory=False)
     try:
-        #df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
+        df = pd.read_csv(r'recommendation_model/dataset/movies_metadata.csv' , low_memory=False)
         # Ensure required columns exist
         print(df)
         required_columns = ['original_title', 'title']
