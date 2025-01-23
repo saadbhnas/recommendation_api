@@ -39,6 +39,9 @@ def dataframee():
 
 # Replace with your file's raw URL or GitHub API download URL
 
+@app.post("/title")
+async def title(payload: dict = Body(...)):
+    print("Payload received:", payload)
 
 
 
