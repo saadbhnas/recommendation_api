@@ -11,3 +11,4 @@ pydantic
 strictyaml
 ruamel.yaml
 feature-engine
+requests
