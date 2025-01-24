@@ -10,34 +10,17 @@ import requests
 
 save_path = trained_model_dir / config.app_config.similiarity_score
 similiarity_score = joblib.load(filename=save_path)
-#df = pd.read_csv(dataset_folder/'movies_metadata.csv' , low_memory=False)
+
 
 class Title(BaseModel):
     movie_title:str
     
-#df = pd.read_csv(r'recommendation_model/dataset/movies_metadata.csv' , low_memory=False)
+
 
 
 app = FastAPI()
 
 
-
-@app.get("/download")
-def dataframee():
-    url = 'https://raw.githubusercontent.com/saadbhnas/api-deployment/master/recommendation_model/dataset/movies_metadata.csv'
-    output_file = "recommendation_model/dataset/movies_metadata.csv"  # Path inside Railway
-    try:
-        response = requests.get(url, stream=True)
-        response.raise_for_status()
-        with open(output_file, "wb") as file:
-            for chunk in response.iter_content(chunk_size=8192):
-                file.write(chunk)
-        print("CSV file downloaded successfully!")
-    except requests.exceptions.RequestException as e:
-        print(f"Error downloading CSV file: {e}")
-    
-
-# Replace with your file's raw URL or GitHub API download URL
 
 
 
